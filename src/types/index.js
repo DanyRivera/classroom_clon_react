@@ -1,0 +1,1 @@
+export const MOSTRAR_BARRA = 'MOSTRAR_BARRA';
