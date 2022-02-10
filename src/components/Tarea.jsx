@@ -1,29 +1,35 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import IconTask from '../img/icon_task.svg';
 import TresPuntos from '../img/puntos.svg';
 
-const Tarea = () => {
+const Tarea = ({tarea, clase}) => {
 
     const navigate = useNavigate();
+    const {id} = useParams();
 
     const [mostrar, setMostrar] = useState(false);
+
+    const {profesor, color} = clase;
+    const {nombre, creado} = tarea;
+
+    console.log(color);
 
     return (
         <li className='mb-5'>
             <div
-                className='shadow-md relative mx-16 p-5 rounded-md border-2 border-[#038A00] flex justify-between items-center hover:bg-gray-50 transition-all cursor-pointer'
+                className={`shadow-md relative mx-16 p-5 rounded-md border-2 border-[${color}] flex justify-between items-center hover:bg-gray-50 transition-all cursor-pointer`}
             >
                 <div
-                    onClick={() => navigate('/tareas/2')}
+                    onClick={() => navigate(`/clases/${id}/tareas/${tarea.id}`)}
                     className='flex items-center'
                 >
                     <div className='w-8'>
                         <img src={IconTask} alt="Icon Task" />
                     </div>
                     <div className='flex flex-col ml-10'>
-                        <p><span className='font-bold'>Nombre Profesor ha publicado:</span> Nombre de la Tarea Asignada </p>
-                        <p><span className='font-bold'>Publicado:</span> 20/02/22</p>
+                        <p><span className='font-bold'>{profesor} ha publicado:</span> {nombre} </p>
+                        <p><span className='font-bold'>Publicado:</span> {creado} </p>
                     </div>
                 </div>
 

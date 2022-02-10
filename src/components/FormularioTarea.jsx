@@ -1,6 +1,26 @@
+import { useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+import * as Yup from 'yup';
+import AppContext from "../context/App/AppContext";
+import { generarId, formatDate } from "../helpers";
+import Alerta from "./Alerta";
 
 const FormularioTarea = () => {
+
+    const navigate = useNavigate();
+    const date = new Date();
+    const { id } = useParams();
+    const { setTarea } = useContext(AppContext);
+
+    const nuevaTareaSchema = Yup.object().shape({
+        nombre: Yup.string().required('El nombre de la tarea es obligatoria'),
+        puntos: Yup.number().required('Los puntos de la tarea son obligatorios'),
+        entrega: Yup.date().required('La fecha de entrega es obligatoria'),
+        descripcion: Yup.string().required('La descripción es obligatoria')
+    })
+
+    // console.log(formatDate(date))
 
     return (
         <Formik
@@ -9,15 +29,22 @@ const FormularioTarea = () => {
                 nombre: '',
                 puntos: '',
                 entrega: '',
-                descripcion: ''
+                descripcion: '',
+                creado: formatDate(date),
+                entregada: false,
+                id: generarId(),
+                idClase: id
             }}
 
             onSubmit={values => {
-                console.log(values)
+                setTarea(values);
+                navigate(`/clases/${id}`);
             }}
+
+            validationSchema={nuevaTareaSchema}
         >
 
-            {() => (
+            {({ errors, touched }) => (
 
                 <Form
                     className="border rounded-lg p-8 w-1/2 mx-auto"
@@ -32,6 +59,9 @@ const FormularioTarea = () => {
                             name="nombre"
                             className="w-full block mt-3 bg-gray-50 rounded-full p-3"
                         />
+                        {errors.nombre && touched.nombre ? (
+                            <Alerta>{errors.nombre}</Alerta>
+                        ) : null}
                     </div>
 
                     <div className="mb-10">
@@ -43,6 +73,9 @@ const FormularioTarea = () => {
                             name="puntos"
                             className="w-full block mt-3 bg-gray-50 rounded-full p-3"
                         />
+                        {errors.puntos && touched.puntos ? (
+                            <Alerta>{errors.puntos}</Alerta>
+                        ) : null}
                     </div>
 
                     <div className="mb-10">
@@ -54,6 +87,9 @@ const FormularioTarea = () => {
                             name="entrega"
                             className="w-full block mt-3 bg-gray-50 rounded-full p-3"
                         />
+                        {errors.entrega && touched.entrega ? (
+                            <Alerta>{errors.entrega}</Alerta>
+                        ) : null}
                     </div>
 
                     <div className="mb-10">
@@ -64,6 +100,9 @@ const FormularioTarea = () => {
                             name="descripcion"
                             className="w-full block mt-3 bg-gray-50 rounded-md p-3 h-32"
                         />
+                        {errors.descripcion && touched.descripcion ? (
+                            <Alerta>{errors.descripcion}</Alerta>
+                        ) : null}
                     </div>
 
                     <div className="mt-12 mb-3 flex justify-center">

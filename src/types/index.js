@@ -1,1 +1,4 @@
 export const MOSTRAR_BARRA = 'MOSTRAR_BARRA';
+export const AGREGAR_CLASE = 'AGREGAR_CLASE';
+export const AGREGAR_TAREA = 'AGREGAR_TAREA';
+export const ESTADO_TAREA = 'ESTADO_TAREA';

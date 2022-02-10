@@ -2,21 +2,23 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TresPuntos from '../img/puntos.svg';
 
-const Clase = () => {
+const Clase = ({clase}) => {
 
     const navigate = useNavigate();
 
     const [mostrar, setMostrar] = useState(false);
 
+    const { profesor, nombreClase, color, id } = clase;
+
     return (
         <div className='border border-gray-200 rounded-xl hover:-translate-y-1 hover:shadow-md transition-all duration-300'>
 
             <div
-                onClick={() => navigate('/clases/1')}
+                onClick={() => navigate(`/clases/${id}`)}
             >
-                <div className='bg-[#038A00] p-3 text-white text-xl rounded-t-xl cursor-pointer'>
-                    <h2>Nombre de la Clase</h2>
-                    <p>Profesor</p>
+                <div className={`bg-[${color}] p-3 text-white text-xl rounded-t-xl cursor-pointer`}>
+                    <h2>{nombreClase}</h2>
+                    <p>{profesor}</p>
                 </div>
 
             </div>

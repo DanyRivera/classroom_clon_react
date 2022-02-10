@@ -21,12 +21,12 @@ function App() {
             <Route index element={<ClasesPage />} />
             <Route path=":id" element={<ClasePage />} />
             <Route path="nueva" element={<NuevaClasePage />} />
+            <Route path=":id/tareas/nueva" element={<NuevaTareaPage />} />
+            <Route path=":id/tareas/:idTarea" element={<TareaPage />} />
           </Route>
 
           <Route path="/tareas" element={<Layout />}>
             <Route path="all" element={<TareasPage />} />
-            <Route path=":id" element={<TareaPage />} />
-            <Route path="nueva" element={<NuevaTareaPage />} />
           </Route>
 
           {/* <Route path="*" element={<Layout />}/> */}

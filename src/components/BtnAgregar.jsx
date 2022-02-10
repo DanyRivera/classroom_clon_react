@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BtnAgregar = () => {
+const BtnAgregar = ({id}) => {
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -10,7 +10,7 @@ const BtnAgregar = () => {
         if(location.pathname == '/clases') {
             navigate('/clases/nueva')
         } else {
-            navigate('/tareas/nueva')
+            navigate(`/clases/${id}/tareas/nueva`)
         }
 
     }

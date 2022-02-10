@@ -5,16 +5,34 @@ import BtnAgregar from '../components/BtnAgregar';
 
 const ClasesPage = () => {
 
-  const { compress } = useContext(AppContext);
+  const { compress, clases } = useContext(AppContext);
 
   return (
     <>
 
       <BtnAgregar />
 
-      <div className={`grid ${compress ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-10 m-16`}>
-        <Clase />
-      </div>
+      {clases.length > 0 ? (
+
+        <div className={`grid ${compress ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-10 m-16`}>
+
+          {
+            clases.map(clase => (
+              <Clase
+                key={clase.id}
+                clase={clase}
+              />
+            ))
+          }
+
+
+        </div>
+
+      ): (
+
+        <p className='text-center text-5xl mt-40'>Aún No Creas Alguna Clase!</p>
+
+      )}
 
     </>
   )
