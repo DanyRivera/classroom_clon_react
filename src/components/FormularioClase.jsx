@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import { generarId } from "../helpers";
@@ -8,7 +8,11 @@ import Alerta from "./Alerta";
 
 const FormularioClase = () => {
 
+    const { id } = useParams();
     const navigate = useNavigate();
+    const { setClase, actualizarClase, clases } = useContext(AppContext);
+
+    const [claseActual, setClaseActual] = useState({});
 
     const nuevaClaseSchema = Yup.object().shape({
         profesor: Yup.string().required('El nombre del profesor es obligatorio'),
@@ -16,22 +20,41 @@ const FormularioClase = () => {
         color: Yup.string().required('El color es obligatorio'),
     })
 
-    const { setClase } = useContext(AppContext);
+    useEffect(() => {
+
+        if (clases.length > 0 && id) {
+            const clase = clases.find(clase => clase.id == id);
+            setClaseActual(clase);
+        }
+
+    }, [])
+
 
     return (
         <Formik
 
             initialValues={{
-                profesor: '',
-                nombreClase: '',
-                color: '',
-                id: generarId()
+                profesor: claseActual?.profesor ?? '',
+                nombreClase: claseActual?.nombreClase ?? '',
+                color: claseActual?.color ?? '',
+                id: claseActual?.id ?? generarId()
             }}
 
             validationSchema={nuevaClaseSchema}
+            enableReinitialize={true}
 
             onSubmit={values => {
-                setClase(values);
+
+                // console.log(values);
+
+                if (id) {
+                    //Esta editando
+                    actualizarClase(values);
+                } else {
+                    //Esta creando
+                    setClase(values);
+                }
+
                 navigate('/clases');
             }}
         >
@@ -116,7 +139,7 @@ const FormularioClase = () => {
                         <div className="mt-12 mb-3 flex justify-center">
                             <input
                                 type="submit"
-                                value="Crear Clase"
+                                value={id ? 'Editar Clase' : 'Crear Clase'}
                                 className="bg-gray-100 py-3 px-8 rounded-xl text-xl hover:bg-gray-200 transition-all duration-[250ms] cursor-pointer"
                             />
                         </div>

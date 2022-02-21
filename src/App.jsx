@@ -6,7 +6,9 @@ import TareaPage from './paginas/TareaPage';
 import AppState from './context/App/AppState';
 import TareasPage from './paginas/TareasPage';
 import NuevaClasePage from './paginas/NuevaClasePage';
+import EditarClasePage from './paginas/EditarClasePage';
 import NuevaTareaPage from './paginas/NuevaTareaPage';
+import EditarTareaPage from './paginas/EditarTareaPage';
 
 function App() {
 
@@ -18,10 +20,17 @@ function App() {
         <Routes>
 
           <Route path="/clases" element={<Layout />}>
+
             <Route index element={<ClasesPage />} />
+
+            {/* Clases */}
             <Route path=":id" element={<ClasePage />} />
             <Route path="nueva" element={<NuevaClasePage />} />
+            <Route path="editar/:id" element={<EditarClasePage />} />
+
+            {/* Tareas */}
             <Route path=":id/tareas/nueva" element={<NuevaTareaPage />} />
+            <Route path=":id/tareas/editar/:idTarea" element={<EditarTareaPage />} />
             <Route path=":id/tareas/:idTarea" element={<TareaPage />} />
           </Route>
 

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
@@ -10,8 +10,10 @@ const FormularioTarea = () => {
 
     const navigate = useNavigate();
     const date = new Date();
-    const { id } = useParams();
-    const { setTarea } = useContext(AppContext);
+    const { id, idTarea } = useParams();
+    const { setTarea, actualizarTarea, clases, tareas } = useContext(AppContext);
+
+    const [tareaActual, setTareaActual] = useState({});
 
     const nuevaTareaSchema = Yup.object().shape({
         nombre: Yup.string().required('El nombre de la tarea es obligatoria'),
@@ -20,28 +22,49 @@ const FormularioTarea = () => {
         descripcion: Yup.string().required('La descripción es obligatoria')
     })
 
-    // console.log(formatDate(date))
+    const clase = clases.find(clase => clase.id == id);
+    const {profesor} = clase;
+    
+    useEffect(() => {
+
+        if(idTarea) {
+            const tarea = tareas.find(tarea => tarea.id == idTarea);
+            setTareaActual(tarea);
+        }
+
+    }, [])
+    
 
     return (
         <Formik
 
             initialValues={{
-                nombre: '',
-                puntos: '',
-                entrega: '',
-                descripcion: '',
-                creado: formatDate(date),
-                entregada: false,
-                id: generarId(),
-                idClase: id
+                nombre: tareaActual?.nombre ?? '',
+                puntos: tareaActual?.puntos ?? '',
+                entrega: tareaActual?.entrega ?? '',
+                descripcion: tareaActual?.descripcion ?? '',
+                profesor,
+                creado: tareaActual?.creado ?? formatDate(date),
+                entregada: tareaActual?.entregada ?? false,
+                id: tareaActual?.id ?? generarId(),
+                idClase: tareaActual?.idClase ?? id
             }}
 
             onSubmit={values => {
-                setTarea(values);
+
+                // console.log(values);
+
+                if(idTarea) {
+                    actualizarTarea(values)
+                } else {
+                    setTarea(values);
+                }
+
                 navigate(`/clases/${id}`);
             }}
 
             validationSchema={nuevaTareaSchema}
+            enableReinitialize={true}
         >
 
             {({ errors, touched }) => (
@@ -108,7 +131,7 @@ const FormularioTarea = () => {
                     <div className="mt-12 mb-3 flex justify-center">
                         <input
                             type="submit"
-                            value="Crear Tarea"
+                            value={idTarea ? 'Editar Tarea' : 'Crear Tarea'}
                             className="bg-gray-100 py-3 px-8 rounded-xl text-xl hover:bg-gray-200 transition-all duration-[250ms] cursor-pointer"
                         />
                     </div>

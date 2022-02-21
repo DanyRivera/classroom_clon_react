@@ -9,14 +9,12 @@ const TareaPage = () => {
     const { id, idTarea } = useParams();
     const { clases, tareas, setEntregada } = useContext(AppContext);
 
-    const [entregar, setEntregar] = useState(false);
 
-    const clase = clases.filter(clase => clase.id == id);
-    const tarea = tareas.filter(tarea => tarea.id == idTarea);
+    const clase = clases.find(clase => clase.id == id);
+    const tarea = tareas.find(tarea => tarea.id == idTarea);
 
-    const { nombreClase, profesor, color } = clase[0];
-    const { nombre, puntos, entrega, descripcion, entregada } = tarea[0];
-
+    const { nombreClase, profesor, color } = clase;
+    const { nombre, puntos, entrega, descripcion, entregada } = tarea;
 
     return (
         <>
@@ -48,7 +46,7 @@ const TareaPage = () => {
                     <div className='flex justify-around items-center'>
                         <p className='text-xl'>Acciones</p>
 
-                        {entregar ? (
+                        {entregada ? (
 
                             <p className='text-[#038A00]'>Entregada</p>
 
@@ -61,17 +59,13 @@ const TareaPage = () => {
                     </div>
                     <div
                         className='mt-5 cursor-pointer'
-                        onClick={() => setEntregar(!entregar)}
                     >
-                        <a
-                            className={`py-3 m-0 block rounded-md text-center text-white w-100 bg-[${color}]`}
+                        <button
+                            className={`py-3 m-0 block rounded-md text-center text-white w-100 bg-[#000] w-full`}
+                            onClick={() => setEntregada(tarea)}
                         >
-                            {entregar ? (
-                                <button>Anular Entrega</button>
-                            ) : (
-                                <button>Entregar</button>
-                            )}
-                        </a>
+                            Entregar
+                        </button>
                     </div>
                 </div>
             </div>

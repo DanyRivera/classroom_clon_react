@@ -1,14 +1,37 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AppContext from '../context/App/AppContext';
 import TresPuntos from '../img/puntos.svg';
 
-const Clase = ({clase}) => {
+const Clase = ({ clase }) => {
 
     const navigate = useNavigate();
+    const { tareas, eliminarClase } = useContext(AppContext);
 
     const [mostrar, setMostrar] = useState(false);
+    const [limiteTareas, setLimiteTareas] = useState([]);
 
     const { profesor, nombreClase, color, id } = clase;
+
+    const tareasClase = tareas.filter(tarea => tarea.idClase == id);
+    // console.log(tareasClase);
+
+    useEffect(() => {
+
+        if (tareasClase.length > 4) {
+
+
+            setLimiteTareas([tareasClase[0],tareasClase[1],tareasClase[2],tareasClase[3]]);
+
+
+        } else {
+
+            setLimiteTareas(tareasClase);
+
+        }
+
+    }, []);
+
 
     return (
         <div className='border border-gray-200 rounded-xl hover:-translate-y-1 hover:shadow-md transition-all duration-300'>
@@ -23,13 +46,25 @@ const Clase = ({clase}) => {
 
             </div>
 
-            <div className='py-5 pl-3'>
+            <div 
+                className={`
+                    py-5 pl-5 
+                    ${tareasClase.length == 0 && 'pb-[140px]'} 
+                    ${tareasClase.length >= 4 && 'pb-3'} 
+                    ${tareasClase.length == 1  && 'pb-[108px]'} 
+                    ${tareasClase.length == 2  && 'pb-[77px]'} 
+                    ${tareasClase.length == 3  && 'pb-[46px]'}
+                `}
+            >
 
-                <ul className=''>
-                    <li className='mb-2'>Task 1</li>
-                    <li className='mb-2'>Task 2</li>
-                    <li className='mb-2'>Task 3</li>
-                    <li>Task 4</li>
+                <ul >
+
+                    {
+                        limiteTareas.map(tarea => (
+                            <li key={tarea.id} className='mb-2'>{tarea.nombre}</li>
+                        ))
+                    }
+
                 </ul>
 
             </div>
@@ -44,8 +79,17 @@ const Clase = ({clase}) => {
 
                 {mostrar && (
                     <div className='flex flex-col divide-y z-10 absolute top-10 -right-16 bg-gray-50 rounded-md border'>
-                        <button className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'>Editar</button>
-                        <button className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'>Eliminar</button>
+
+                        <button 
+                            className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'
+                            onClick={() => navigate(`editar/${id}`)}
+                        >Editar</button>
+
+                        <button 
+                            className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'
+                            onClick={() => eliminarClase(id)}
+                        >Eliminar</button>
+                        
                     </div>
                 )}
 

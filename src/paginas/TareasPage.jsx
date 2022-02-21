@@ -1,19 +1,34 @@
+import { useContext } from "react";
+import AppContext from "../context/App/AppContext";
 import Tarea from "../components/Tarea";
 
 const TareasPage = () => {
 
+  const { tareas } = useContext(AppContext);
+
   return (
     <>
-        <h2 className='text-center my-12 text-3xl'>Visualiza todas tus Tareas</h2>
+      {tareas.length > 0 ? (
 
-        <div>
+        <>
+          <h2 className='text-center my-12 text-3xl'>Visualiza todas tus Tareas</h2>
+
+          <div>
             <ul>
-                <Tarea />
-                <Tarea />
-                <Tarea />
-                <Tarea />
+
+              {tareas.map(tarea => (
+                <Tarea tarea={tarea} key={tarea.id} />
+              ))}
+
             </ul>
-        </div>
+          </div>
+        </>
+
+      ) : (
+
+        <p className='text-center text-5xl mt-40'>Aún No Creas Alguna Tarea!</p>
+
+      )}
     </>
   )
 

@@ -4,7 +4,7 @@ import AppContext from '../context/App/AppContext';
 
 const Layout = () => {
 
-    const {compress, setCompress} = useContext(AppContext);
+    const { compress, clases, setCompress } = useContext(AppContext);
 
     return (
         <div className='md:flex md:min-h-screen'>
@@ -35,9 +35,12 @@ const Layout = () => {
                             <Link to="/tareas/all" className='mb-5 text-xl'>Tareas</Link>
 
                             <ul className='mt-7'>
-                                <li className='flex flex-col'>
-                                    <Link to="/clases/1" className='mb-3 text-md'>Clase 1</Link>
-                                </li>
+                                {clases.map(clase => (
+                                    <li key={clase.id} className='flex flex-col'>
+                                        <Link to="/clases/1" className='mb-3 text-md'>{clase.nombreClase}</Link>
+                                    </li>
+                                ))}
+
                             </ul>
                         </nav>
                     </>
@@ -47,7 +50,7 @@ const Layout = () => {
             </div>
 
             <div className={`${compress ? 'w-full' : 'w-3/4'} md:h-screen md:overflow-y-scroll`}>
-                <Outlet/>
+                <Outlet />
             </div>
         </div>
     )

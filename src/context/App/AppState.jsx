@@ -4,7 +4,11 @@ import AppReducer from "./AppReducer";
 import {
     MOSTRAR_BARRA,
     AGREGAR_CLASE,
+    ACTUALIZAR_CLASE,
+    ELIMINAR_CLASE,
     AGREGAR_TAREA,
+    ACTUALIZAR_TAREA,
+    ELIMINAR_TAREA,
     ESTADO_TAREA
 } from "../../types";
 
@@ -32,10 +36,38 @@ const AppState = (props) => {
         })
     }
 
+    const actualizarClase = clase => {
+        dispatch({
+            type: ACTUALIZAR_CLASE,
+            payload: clase
+        })
+    }
+
+    const eliminarClase = id => {
+        dispatch({
+            type: ELIMINAR_CLASE,
+            payload: id
+        })
+    }
+
     const setTarea = tarea => {
         dispatch({
             type: AGREGAR_TAREA,
             payload: tarea
+        })
+    }
+
+    const actualizarTarea = tarea => {
+        dispatch({
+            type: ACTUALIZAR_TAREA,
+            payload: tarea
+        })
+    }
+
+    const eliminarTarea = id => {
+        dispatch({
+            type: ELIMINAR_TAREA,
+            payload: id
         })
     }
 
@@ -54,7 +86,11 @@ const AppState = (props) => {
                 tareas: state.tareas,
                 setCompress,
                 setClase,
+                actualizarClase,
+                eliminarClase,
                 setTarea,
+                actualizarTarea,
+                eliminarTarea,
                 setEntregada
             }}
         >
