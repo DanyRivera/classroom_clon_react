@@ -54,10 +54,12 @@ const FormularioTarea = () => {
 
                 // console.log(values);
 
+                const tareasArr = [...tareas, values];
+
                 if(idTarea) {
                     actualizarTarea(values)
                 } else {
-                    setTarea(values);
+                    setTarea(tareasArr);
                 }
 
                 navigate(`/clases/${id}`);

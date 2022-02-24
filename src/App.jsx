@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Layout from './layout/Layout';
 import ClasesPage from './paginas/ClasesPage';
 import ClasePage from './paginas/ClasePage';
@@ -11,6 +12,17 @@ import NuevaTareaPage from './paginas/NuevaTareaPage';
 import EditarTareaPage from './paginas/EditarTareaPage';
 
 function App() {
+
+
+  useEffect(() => {
+
+    if (window.location.pathname == '/') {
+      window.location.replace("http://localhost:3000/clases")
+    }
+
+    // console.log(window.location.pathname);
+
+  }, [])
 
   return (
 
@@ -38,7 +50,7 @@ function App() {
             <Route path="all" element={<TareasPage />} />
           </Route>
 
-          {/* <Route path="*" element={<Layout />}/> */}
+          {/* <Route path="*" element={<Layout />} />  */}
 
         </Routes>
 

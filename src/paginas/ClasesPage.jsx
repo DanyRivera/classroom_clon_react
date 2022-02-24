@@ -28,7 +28,7 @@ const ClasesPage = () => {
 
         </div>
 
-      ): (
+      ) : (
 
         <p className='text-center text-5xl mt-40'>Aún No Creas Alguna Clase!</p>
 

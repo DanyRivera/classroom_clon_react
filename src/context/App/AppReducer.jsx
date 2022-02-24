@@ -22,7 +22,7 @@ export default (state, action) => {
         case AGREGAR_CLASE:
             return {
                 ...state,
-                clases: [...state.clases, action.payload]
+                clases: action.payload
             }
 
         case ACTUALIZAR_CLASE:
@@ -42,8 +42,7 @@ export default (state, action) => {
         case AGREGAR_TAREA:
             return {
                 ...state,
-                tareas: [...state.tareas, action.payload]
-
+                tareas: action.payload
             }
 
         case ACTUALIZAR_TAREA:

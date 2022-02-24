@@ -1,10 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import AppContext from '../context/App/AppContext';
 
 const Layout = () => {
 
-    const { compress, clases, setCompress } = useContext(AppContext);
+    const { compress, clases, tareas, setCompress } = useContext(AppContext);
+
+    useEffect(() => {
+
+        localStorage.setItem('clases', JSON.stringify(clases) ?? []);
+
+    }, [clases])
+
+    useEffect(() => {
+
+        localStorage.setItem('tareas', JSON.stringify(tareas) ?? []);
+
+    }, [tareas])
 
     return (
         <div className='md:flex md:min-h-screen'>
@@ -37,7 +49,7 @@ const Layout = () => {
                             <ul className='mt-7'>
                                 {clases.map(clase => (
                                     <li key={clase.id} className='flex flex-col'>
-                                        <Link to="/clases/1" className='mb-3 text-md'>{clase.nombreClase}</Link>
+                                        <Link to={`/clases/${clase.id}`} className='mb-3 text-md'>{clase.nombreClase}</Link>
                                     </li>
                                 ))}
 

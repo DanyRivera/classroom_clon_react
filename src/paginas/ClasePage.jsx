@@ -9,8 +9,8 @@ const ClasePage = () => {
   const { id } = useParams();
   const { clases, tareas } = useContext(AppContext);
 
-  const clase = clases.filter(clase => clase.id == id);
-  const { profesor, nombreClase, color } = clase[0];
+  const clase = clases.find(clase => clase.id == id);
+  const { profesor, nombreClase, color } = clase;
 
   const tareasClase = tareas.filter(tarea => tarea.idClase == id);
 
@@ -32,7 +32,6 @@ const ClasePage = () => {
               <Tarea 
                 key={tarea.id}
                 tarea={tarea}
-                clase={clase[0]}
               />
             ))}
 

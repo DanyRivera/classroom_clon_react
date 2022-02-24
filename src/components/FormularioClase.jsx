@@ -46,13 +46,14 @@ const FormularioClase = () => {
             onSubmit={values => {
 
                 // console.log(values);
+                const clasesArr = [...clases, values]
 
                 if (id) {
                     //Esta editando
                     actualizarClase(values);
                 } else {
                     //Esta creando
-                    setClase(values);
+                    setClase(clasesArr);
                 }
 
                 navigate('/clases');

@@ -15,9 +15,9 @@ import {
 const AppState = (props) => {
 
     const initialState = {
-        clases: [],
-        tareas: [],
-        compress: true
+        clases: localStorage.getItem('clases') ? JSON.parse(localStorage.getItem('clases')) : [],
+        tareas: localStorage.getItem('tareas') ? JSON.parse(localStorage.getItem('tareas')) : [],
+        compress: false
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -29,10 +29,10 @@ const AppState = (props) => {
         })
     }
 
-    const setClase = clase => {
+    const setClase = clases => {
         dispatch({
             type: AGREGAR_CLASE,
-            payload: clase
+            payload: clases
         })
     }
 
