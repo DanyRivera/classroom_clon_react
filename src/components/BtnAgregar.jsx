@@ -20,7 +20,7 @@ const BtnAgregar = ({id}) => {
     return (
         <button
             onClick={() => handleClick()}
-            className='m-16 mt-24 py-3 px-4 rounded-xl border text-md bg-gray-100 flex items-center hover:bg-gray-200 transition-all duration-[250ms]'
+            className='mx-auto mt-10 md:m-16 md:mt-24 py-3 px-4 rounded-xl border text-md bg-gray-100 flex items-center hover:bg-gray-200 transition-all duration-[250ms]'
         >Agregar<span className='text-2xl px-1'>+</span></button>
     )
     

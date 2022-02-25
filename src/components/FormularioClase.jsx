@@ -64,7 +64,7 @@ const FormularioClase = () => {
 
                 return (
                     <Form
-                        className="border rounded-lg p-8 w-1/2 mx-auto"
+                        className="md:border rounded-lg px-7 md:p-8 md:w-1/2 mx-auto"
                     >
 
                         <div className="mb-10">
@@ -99,33 +99,33 @@ const FormularioClase = () => {
 
                         <div>
                             <label htmlFor="color" className="text-xl">Escoge un Color:</label>
-                            <div className="w-full mt-3 grid grid-cols-3 text-center">
-                                <div className="my-5">
+                            <div className="w-full mt-3 md:grid md:grid-cols-3 text-center">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#038A00" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#038A00]">Verde</label>
                                 </div>
 
-                                <div className="my-5">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#00b4d8" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#00b4d8]">Azul</label>
                                 </div>
 
-                                <div className="my-5">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#6c757d" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#6c757d]">Gris</label>
                                 </div>
 
-                                <div className="my-5">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#f48c06" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#f48c06]">Naranja</label>
                                 </div>
 
-                                <div className="my-5">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#8338ec" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#8338ec]">Morado</label>
                                 </div>
 
-                                <div className="my-5">
+                                <div className="md:my-5 my-9">
                                     <Field id="rojo" name="color" type="radio" value="#d90429" />
                                     <label htmlFor="rojo" className="ml-2 font-bold text-white py-1 px-2 rounded-lg bg-[#d90429]">Rojo</label>
                                 </div>

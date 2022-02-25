@@ -11,7 +11,7 @@ const TareasPage = () => {
       {tareas.length > 0 ? (
 
         <>
-          <h2 className='text-center my-12 text-3xl'>Visualiza todas tus Tareas</h2>
+          <h2 className='text-center mx-5 md:mx-0 my-12 text-3xl'>Visualiza todas tus Tareas</h2>
 
           <div>
             <ul>

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import AppContext from '../context/App/AppContext';
 import TresPuntos from '../img/puntos.svg';
 
@@ -21,7 +21,7 @@ const Clase = ({ clase }) => {
         if (tareasClase.length > 4) {
 
 
-            setLimiteTareas([tareasClase[0],tareasClase[1],tareasClase[2],tareasClase[3]]);
+            setLimiteTareas([tareasClase[0], tareasClase[1], tareasClase[2], tareasClase[3]]);
 
 
         } else {
@@ -46,14 +46,14 @@ const Clase = ({ clase }) => {
 
             </div>
 
-            <div 
+            <div
                 className={`
                     py-5 pl-5 
                     ${tareasClase.length == 0 && 'pb-[140px]'} 
                     ${tareasClase.length >= 4 && 'pb-3'} 
-                    ${tareasClase.length == 1  && 'pb-[108px]'} 
-                    ${tareasClase.length == 2  && 'pb-[77px]'} 
-                    ${tareasClase.length == 3  && 'pb-[46px]'}
+                    ${tareasClase.length == 1 && 'pb-[108px]'} 
+                    ${tareasClase.length == 2 && 'pb-[77px]'} 
+                    ${tareasClase.length == 3 && 'pb-[46px]'}
                 `}
             >
 
@@ -61,7 +61,9 @@ const Clase = ({ clase }) => {
 
                     {
                         limiteTareas.map(tarea => (
-                            <li key={tarea.id} className='mb-2'>{tarea.nombre}</li>
+                            <li key={tarea.id} className='mb-2'>
+                                <Link to={`${id}/tareas/${tarea.id}`}>{tarea.nombre}</Link>
+                            </li>
                         ))
                     }
 
@@ -78,18 +80,18 @@ const Clase = ({ clase }) => {
                 </button>
 
                 {mostrar && (
-                    <div className='flex flex-col divide-y z-10 absolute top-10 -right-16 bg-gray-50 rounded-md border'>
+                    <div className='flex flex-col divide-y z-10 absolute top-10 -right-7 md:-right-16 bg-gray-50 rounded-md border'>
 
-                        <button 
+                        <button
                             className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'
                             onClick={() => navigate(`editar/${id}`)}
                         >Editar</button>
 
-                        <button 
+                        <button
                             className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'
                             onClick={() => eliminarClase(id)}
                         >Eliminar</button>
-                        
+
                     </div>
                 )}
 

@@ -72,7 +72,7 @@ const FormularioTarea = () => {
             {({ errors, touched }) => (
 
                 <Form
-                    className="border rounded-lg p-8 w-1/2 mx-auto"
+                    className="md:border rounded-lg px-10 md:p-8 md:w-1/2 mx-auto"
                 >
 
                     <div className="mb-10">

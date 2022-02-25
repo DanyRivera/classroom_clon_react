@@ -14,7 +14,7 @@ const ClasesPage = () => {
 
       {clases.length > 0 ? (
 
-        <div className={`grid ${compress ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-10 m-16`}>
+        <div className={`grid ${compress ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-10 md:m-16 mx-10 mt-10`}>
 
           {
             clases.map(clase => (
@@ -30,7 +30,7 @@ const ClasesPage = () => {
 
       ) : (
 
-        <p className='text-center text-5xl mt-40'>Aún No Creas Alguna Clase!</p>
+        <p className='text-center text-3xl md:text-5xl mt-14 md:mt-40'>Aún No Creas Alguna Clase!</p>
 
       )}
 

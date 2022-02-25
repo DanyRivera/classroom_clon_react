@@ -20,7 +20,7 @@ const Layout = () => {
 
     return (
         <div className='md:flex md:min-h-screen'>
-            <div className={` ${compress ? 'md:w-[6%] pl-8' : 'md:w-1/4 p-11'} transition-all duration-[250ms] pt-5 bg-gray-50`}>
+            <div className={` ${compress ? 'md:w-[6%] pl-8' : 'md:w-1/4 p-11'} transition-all duration-[250ms] py-5 md:pt-5 bg-gray-50`}>
 
                 {compress ? (
 
@@ -61,7 +61,7 @@ const Layout = () => {
 
             </div>
 
-            <div className={`${compress ? 'w-full' : 'w-3/4'} md:h-screen md:overflow-y-scroll`}>
+            <div className={`${compress ? 'md:w-full' : 'md:w-3/4'} md:h-screen md:overflow-y-scroll mb-14 md:mb-0`}>
                 <Outlet />
             </div>
         </div>

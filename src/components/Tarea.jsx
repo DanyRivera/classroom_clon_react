@@ -14,9 +14,9 @@ const Tarea = ({ tarea }) => {
     const { nombre, creado, entregada, profesor, idClase } = tarea;
 
     return (
-        <li className='mb-5'>
+        <li className='md:mb-5 my-10'>
             <div
-                className={`shadow-md relative mx-16 p-5 rounded-md border-[3px] ${entregada ? 'border-[#0aeb06] bg-gray-50' : 'hover:bg-gray-50'} flex justify-between items-center transition-all cursor-pointer`}
+                className={`shadow-md relative mx-2 md:mx-16 p-3 md:p-5 rounded-md border-[3px] ${entregada ? 'border-[#0aeb06] bg-gray-50' : 'hover:bg-gray-50'} flex justify-between items-center transition-all cursor-pointer`}
             >
                 <div
                     onClick={() => navigate(`/clases/${idClase}/tareas/${tarea.id}`)}
@@ -39,7 +39,7 @@ const Tarea = ({ tarea }) => {
                 </button>
 
                 {mostrar && (
-                    <div className='flex flex-col divide-y absolute z-10 -right-12 top-16 bg-gray-50 rounded-md border'>
+                    <div className='flex flex-col divide-y absolute z-10 right-0 -bottom-20 md:-right-12 md:top-16 bg-gray-50 rounded-md border'>
 
                         <button 
                             className='py-3 px-6 hover:bg-gray-200 transition-all duration-[250ms]'

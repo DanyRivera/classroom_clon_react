@@ -13,11 +13,12 @@ import EditarTareaPage from './paginas/EditarTareaPage';
 
 function App() {
 
+  // console.log(import.meta.env.VITE_APP_URL)
 
   useEffect(() => {
 
     if (window.location.pathname == '/') {
-      window.location.replace("http://localhost:3000/clases")
+      window.location.replace(import.meta.env.VITE_APP_URL)
     }
 
     // console.log(window.location.pathname);
