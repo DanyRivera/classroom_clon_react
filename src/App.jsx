@@ -15,15 +15,15 @@ function App() {
 
   // console.log(import.meta.env.VITE_APP_URL)
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (window.location.pathname == '/') {
-      window.location.replace(`${import.meta.env.VITE_APP_URL}/clases`)
-    }
+  //   if (window.location.pathname == '/') {
+  //     window.location.replace(`${import.meta.env.VITE_APP_URL}/clases`)
+  //   }
 
-    // console.log(window.location.pathname);
+  //   // console.log(window.location.pathname);
 
-  }, [])
+  // }, [])
 
   return (
 
