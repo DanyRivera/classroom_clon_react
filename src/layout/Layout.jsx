@@ -1,10 +1,27 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import AppContext from '../context/App/AppContext';
 
 const Layout = () => {
 
     const { compress, clases, tareas, setCompress } = useContext(AppContext);
+    const [mobil, setMobil] = useState(null);
+
+    useEffect(() => {
+
+        let details = navigator.userAgent
+
+        let regexp = /android|iphone|kindle|ipad/i;
+
+        let isMobileDevice = regexp.test(details);
+
+        if (isMobileDevice) {
+            setMobil(true);
+        } else {
+            setMobil(false);
+        }
+
+    }, [])
 
     useEffect(() => {
 
@@ -24,10 +41,22 @@ const Layout = () => {
 
                 {compress ? (
 
-                    <button
-                        className='mx-auto text-3xl cursor-pointer'
-                        onClick={() => setCompress()}
-                    >&rarr;</button>
+                    (mobil ?
+
+
+                        <button
+                            className='mx-auto text-3xl cursor-pointer'
+                            onClick={() => setCompress()}
+                        >&darr;</button>
+
+                        :
+
+                        <button
+                            className='mx-auto text-3xl cursor-pointer'
+                            onClick={() => setCompress()}
+                        >&rarr;</button>
+
+                    )
 
                 ) : (
 
