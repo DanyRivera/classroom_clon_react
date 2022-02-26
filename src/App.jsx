@@ -21,7 +21,7 @@ function App() {
       window.location.replace(`${import.meta.env.VITE_APP_URL}/clases`)
     }
 
-    // console.log(window.location.pathname);
+    console.log(window.location.pathname);
 
   }, [])
 
