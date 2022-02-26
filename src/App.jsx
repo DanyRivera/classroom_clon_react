@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
 
-    if (window.location.pathname == '/' || window.location.pathname == '/undefined/clases') {
+    if (window.location.pathname == '/') {
       window.location.replace(`${import.meta.env.VITE_APP_URL}/clases`)
     }
 
