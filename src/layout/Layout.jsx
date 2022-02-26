@@ -90,7 +90,7 @@ const Layout = () => {
 
             </div>
 
-            <div className={`${compress ? 'md:w-full' : 'md:w-3/4'} md:h-screen md:overflow-y-scroll mb-14 md:mb-0`}>
+            <div className={`${compress ? 'md:w-full' : 'md:w-3/4'} md:h-screen md:overflow-y-scroll mb-28 md:mb-0`}>
                 <Outlet />
             </div>
         </div>
