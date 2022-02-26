@@ -13,7 +13,7 @@ import EditarTareaPage from './paginas/EditarTareaPage';
 
 function App() {
 
-  console.log(`${import.meta.env.VITE_APP_URL}/clases`)
+  // console.log(`${import.meta.env.VITE_APP_URL}/clases`)
 
   useEffect(() => {
 
