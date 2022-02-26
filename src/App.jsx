@@ -13,12 +13,12 @@ import EditarTareaPage from './paginas/EditarTareaPage';
 
 function App() {
 
-  // console.log(import.meta.env.VITE_APP_URL)
+  // console.log(`${import.meta.env.VITE_APP_URL}/clases`)
 
   useEffect(() => {
 
     if (window.location.pathname == '/') {
-      window.location.replace(`${import.meta.env.VITE_APP_URL}`)
+      window.location.replace(`${import.meta.env.VITE_APP_URL}/clases`)
     }
 
     // console.log(window.location.pathname);
